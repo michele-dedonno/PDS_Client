@@ -1,0 +1,46 @@
+﻿<Controls:MetroWindow x:Class="ClientTest.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientTest"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Height="385.333" Width="353.833"
+        BorderThickness="0" 
+        GlowBrush="Black"
+        ResizeMode="NoResize"
+        Background="#FFFFFFFF"
+        WindowTransitionsEnabled="false">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="TextColor">#FF007db3</SolidColorBrush>
+    </Window.Resources>
+
+    <Grid>
+        <Rectangle Fill="{StaticResource TextColor}" Height="3" Margin="10,48,10,0" VerticalAlignment="Top" Focusable="False"/>
+        <TextBlock Foreground="{StaticResource TextColor}" x:Name="textBlock" HorizontalAlignment="Left" Height="39" Margin="10,5,0,0" TextWrapping="Wrap" Text="Benvenuto" VerticalAlignment="Top" Width="239" FontSize="32" Focusable="False"/>
+
+        <TextBox Name="usernameTextBox" Controls:TextBoxHelper.Watermark="" VerticalAlignment="Top" Margin="15,99,15,0" FontSize="14.667" SelectionBrush="{DynamicResource TextColor}"/>
+
+        <TextBlock x:Name="usernameLabel" Margin="15,78,15,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Foreground="{StaticResource TextColor}" FontWeight="Bold" Focusable="False" FontSize="16"/>
+
+        <PasswordBox Name="passwordTextBox" Controls:TextBoxHelper.Watermark="" VerticalAlignment="Top" Margin="15,163,15,0" KeyDown="passwordTextBox_KeyDown" FontSize="14.667"/>
+
+        <Button Style="{DynamicResource AccentedSquareButtonStyle}" x:Name="login" Content="Login" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="loginButton" Cursor="Hand"/>
+
+        <Controls:ProgressRing Name="loginProgressRing" Margin="0,207,0,59" Height="41" Width="41" VerticalAlignment="Top" Foreground="{StaticResource TextColor}" Visibility="Hidden"/>
+
+        <TextBlock x:Name="passwordLabel" Margin="15,142,15,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Foreground="{StaticResource TextColor}" FontWeight="Bold" Focusable="False" FontSize="16"/>
+
+        <Rectangle Name="loginErrorIcon" Grid.Column="0" Fill="{StaticResource TextColor}" RenderTransformOrigin="0.5,0.5" Width="18" Height="18" VerticalAlignment="Top" Margin="15,206,0,0" HorizontalAlignment="Left" Visibility="Hidden">
+            <Rectangle.OpacityMask>
+                <VisualBrush Visual="{StaticResource appbar_warning_circle}" Stretch="Fill" />
+            </Rectangle.OpacityMask>
+        </Rectangle>
+
+        <TextBlock x:Name="loginErrorText" Margin="37,207,15,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Foreground="{StaticResource TextColor}" FontWeight="Bold" Visibility="Hidden"/>
+
+
+    </Grid>
+</Controls:MetroWindow>

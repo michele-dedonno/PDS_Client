@@ -1,0 +1,166 @@
+﻿<Application x:Class="ClientTest.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ClientTest"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+             xmlns:properties="clr-namespace:ClientTest.Properties"
+             StartupUri="LoginWindow.xaml"
+             Startup="Application_Startup"
+             Exit="Application_Exit">
+    <Application.Resources>
+        
+        <ResourceDictionary>
+            <!-- COLOR RESOURCES-->
+            <Color x:Key="SimpleBackupItemBackground">#FF7F120F</Color>
+            <SolidColorBrush x:Key="SimpleBackupItemImg">#FF000000</SolidColorBrush>
+            <SolidColorBrush x:Key="SimpleBackupItemText">#FF000000</SolidColorBrush>
+            <SolidColorBrush x:Key="SimpleBackupItemSelected">#FFe6e6e6</SolidColorBrush>
+
+            <Color x:Key="AdvancedBackupItemBackground">#FF7F120F</Color>
+            <SolidColorBrush x:Key="AdvancedBackupItemImg">#FF000000</SolidColorBrush>
+            <SolidColorBrush x:Key="AdvancedBackupItemText">#FF000000</SolidColorBrush>
+            <SolidColorBrush x:Key="AdvancedBackupItemSelected">#FFe6e6e6</SolidColorBrush>
+            
+            
+            
+            
+            <!-- ADVANCED RETREIVE BACKUP BUTTON-->
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="#00008000"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}" BorderThickness="0">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#FFe6e6e6"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+
+            <!-- BACKUP LIST ITEM-->
+            <Style TargetType="{x:Type local:BackupListItem}">
+                <Style.Triggers>
+                    <!-- triggers for advanced view-->
+                    <Trigger Property="IsAdvanced" Value="True">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type local:BackupListItem}">
+                                    <Grid Height="48" Background="{TemplateBinding Background}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="16*"/>
+                                            <ColumnDefinition Width="57*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Rectangle Grid.Column="0" Fill="{StaticResource AdvancedBackupItemImg}" Width="30" Height="30">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Visual="{StaticResource appbar_disk_download}" Stretch="Fill" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+
+                                        <TextBlock Grid.Column="1" Margin="0,5,0,23" FontSize="14.667" FontWeight="Bold" Text="{TemplateBinding BackupDate}" Foreground="{StaticResource AdvancedBackupItemText}"/>
+                                        <TextBlock Grid.Column="1" Margin="0,25,0,0" Text="{TemplateBinding BackupTime}" Foreground="{StaticResource AdvancedBackupItemText}"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                    
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsMouseOver" Value="True"/>
+                            <Condition Property="IsAdvanced" Value="True"/>
+                        </MultiTrigger.Conditions>
+                        <MultiTrigger.Setters>
+                            <Setter Property="Background" Value="{StaticResource AdvancedBackupItemSelected}"/>
+                        </MultiTrigger.Setters>
+                    </MultiTrigger>
+                    
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsSelected" Value="True"/>
+                            <Condition Property="IsAdvanced" Value="True"/>
+                        </MultiTrigger.Conditions>
+                        <MultiTrigger.Setters>
+                            <Setter Property="Background" Value="{StaticResource AdvancedBackupItemSelected}"/>
+                        </MultiTrigger.Setters>
+                    </MultiTrigger>
+                    
+                    
+                    <!-- triggers for simple view-->
+                    <Trigger Property="IsAdvanced" Value="False">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type local:BackupListItem}">
+                                    <Grid Height="48" Background="{TemplateBinding Background}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="57*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Rectangle Grid.Column="0" Fill="{StaticResource SimpleBackupItemImg}" Width="30" Height="30">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Visual="{StaticResource appbar_disk_download}" Stretch="Fill" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+
+                                        <TextBlock Grid.Column="1" Margin="0,5,0,23" FontSize="14.667" FontWeight="Bold" Text="{TemplateBinding BackupDate}" Foreground="{StaticResource SimpleBackupItemText}" HorizontalAlignment="Left"/>
+                                        <TextBlock Grid.Column="1" Margin="0,25,0,0" Text="{TemplateBinding BackupTime}" Foreground="{StaticResource SimpleBackupItemText}" HorizontalAlignment="Left"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                    
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsMouseOver" Value="True"/>
+                            <Condition Property="IsAdvanced" Value="False"/>
+                        </MultiTrigger.Conditions>
+                        <MultiTrigger.Setters>
+                            <Setter Property="Background" Value="{StaticResource SimpleBackupItemSelected}"/>
+                        </MultiTrigger.Setters>
+                    </MultiTrigger>
+                    
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsSelected" Value="True"/>
+                            <Condition Property="IsAdvanced" Value="False"/>
+                        </MultiTrigger.Conditions>
+                        <MultiTrigger.Setters>
+                            <Setter Property="Background" Value="{StaticResource SimpleBackupItemSelected}"/>
+                        </MultiTrigger.Setters>
+                    </MultiTrigger>
+                    
+                </Style.Triggers>
+            </Style>
+
+
+            <ResourceDictionary.MergedDictionaries>
+                <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
+                <!-- Accent and AppTheme setting -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+    </Application.Resources>
+</Application>

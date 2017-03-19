@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ClientTest.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="BackupFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SessionID" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="UserID" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="serverCertificateName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">tempCA</Value>
+    </Setting>
+    <Setting Name="machineName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">192.168.43.44</Value>
+    </Setting>
+    <Setting Name="PORT" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">444</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
